@@ -40,7 +40,7 @@ def gameplay(name, players, manual):
         thrower = random.choice(players)
         if (thrower == name):
             if (manual == "yes"):       # manual mode
-                target = input("You are up! Who do you want to throw the snowball at? ") 
+                target = input("You are up! Who do you want to throw the snowball at? ")
             else:        # auto mode
                 # print(thrower)
                 target = random.choice(players)
@@ -60,8 +60,12 @@ def gameplay(name, players, manual):
         hitNum = random.randint(1, 5)
         success = hitResult(hitNum)
         if (success == True):
-            print("It's a hit! " + target + " is down!") 
-            players.remove(target)
+            KO = random.randint(1, 2)
+            if (KO == 1):
+                print("It's a hit! " + target + " is obilterated!") 
+                players.remove(target)
+            else:
+                print(target + " got hit, but will live!")
         else:
             print("Unfortunatley, " + thrower + " has horrible aim and missed.")
         time.sleep(2.5) 
