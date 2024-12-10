@@ -8,8 +8,6 @@
 import random 
 
 def main():
-    # the main runner of the game
-	  # welcome the player, gather names, and run the snowball fight!
     print("Welcome to Snowball Mania!")
     name = input("What is your name? ") 
     opponent = input("Great to have you here, " + name + "! Who do you want to play against? ")
@@ -34,29 +32,23 @@ def main():
    
 
 def gameplay(name, players, manual):
-     # randomly choose one person to throw a snowball at the other
-    import time     # creates delay between print statements 
+    import time   
     while (len(players) > 1): 
         thrower = random.choice(players)
         if (thrower == name):
-            if (manual == "yes"):       # manual mode
-                target = input("You are up! Who do you want to throw the snowball at? ")
-            else:        # auto mode
-                # print(thrower)
+            if (manual == "yes"):       
+                target = input("\nYou are up! Who do you want to throw the snowball at? ")
+                while (target == thrower):
+                    target = input("No dummy. You can't hit yourself, choose someone else. ") 
+            else:        
                 target = random.choice(players)
-                # print(target) 
+                while (target == thrower):
+                    target = random.choice(players) 
+        else:        
+                target = random.choice(players)
                 while (target == thrower):
                     target = random.choice(players)
-                # print(target)
-        else:        # thrower is not us, so pick someone randomly
-                # print(thrower)
-                target = random.choice(players)
-                # print(target) 
-                while (target == thrower):
-                    target = random.choice(players)
-                # print(target)
-        print(thrower + " is throwing a snowball at " + target + "!")
-        # generate a random number to use as the hitNum
+        print("\n" + thrower + " is throwing a snowball at " + target + ".")
         hitNum = random.randint(1, 5)
         success = hitResult(hitNum)
         if (success == True):
@@ -68,14 +60,12 @@ def gameplay(name, players, manual):
                 print(target + " got hit, but will live!")
         else:
             print("Unfortunatley, " + thrower + " has horrible aim and missed.")
-        time.sleep(2.5) 
+        time.sleep(2.8) 
     print(players[0] + " is better than everyone else.")  
 
 
 def hitResult(hitNum):
-    # based on the number that is passed in, return True or False 
-    # indicating if this was a hit or a miss
-    if (hitNum == 3):   #1 in 5 chance
+    if (hitNum == 3):
         return True
     return False
 
